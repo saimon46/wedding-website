@@ -7,3 +7,17 @@ after_success:
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-sdtin
   - docker push saimon46/wedding-website
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-west-3
+  app: WeddingWebsite
+  env: Weddingwebsite-env
+  bucket_name: elasticbeanstalk-eu-west-3-114670523845
+  bucket_path: weddingwebsite
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
