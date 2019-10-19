@@ -1,0 +1,27 @@
+{
+  "name": "wedding-website",
+  "version": "1.0.0",
+  "description": "The wedding website.",
+  "main": "npmfile.js",
+  "scripts": {
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Simone Brundu",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/saimon46/wedding-website",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.0"
+  },
+  "dependencies": {
+    "animate.css": "^3.5.2",
+    "font-awesome": "^4.7.0",
+    "waypoints": "^4.0.1"
+  }
+}

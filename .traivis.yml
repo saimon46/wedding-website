@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+after_success:
+  - docker build -t saimon46/wedding-website .
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-sdtin
+  - docker push saimon46/wedding-website
