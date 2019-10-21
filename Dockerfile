@@ -9,6 +9,7 @@ WORKDIR '/app/www'
 RUN gulp
 
 FROM nginx
-EXPOSE 80
+EXPOSE 80 443
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/node_modules /usr/share/nginx/html/node_modules
 COPY --from=builder /app/www /usr/share/nginx/html
