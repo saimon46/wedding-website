@@ -223,26 +223,22 @@ $(document).ready(function () {
 
         $('#alert-wrapper').html(alert_markup('info', '<strong>Un secondo!</strong> Stiamo salvando la tua conferma!'));
 
-        if (MD5($('#invite_code').val()) !== '74e24607f99492039b6ab8eaece1f133') {
-            $('#alert-wrapper').html(alert_markup('danger', '<strong>Scusa!</strong> Il tuo codice di invito non è corretto!'));
-        } else {
-            for(i=0; i<data_array.length; i++){
-                data = data_array[i];
+        for(i=0; i<data_array.length; i++){
+            data = data_array[i];
 
+            console.log(data);
+
+            $.post('https://script.google.com/macros/s/AKfycbzf_1gk9J5InmggWsgodUJfw5KgdP3rZx-Nc2TYk8NAb1z9q8w/exec', data)
+            .done(function (data) {
                 console.log(data);
-
-                $.post('https://script.google.com/macros/s/AKfycbzf_1gk9J5InmggWsgodUJfw5KgdP3rZx-Nc2TYk8NAb1z9q8w/exec', data)
-                .done(function (data) {
-                    console.log(data);
-                    $('#alert-wrapper').html('');
-                    $('#rsvp-modal').modal('show');
-                    $('#btn-form').attr('disabled','');
-                })
-                .fail(function (data) {
-                    console.log(data);
-                    $('#alert-wrapper').html(alert_markup('danger', '<strong>Mi dispiace!</strong> C\'è stato un errore con il server!'));
-                });
-            }
+                $('#alert-wrapper').html('');
+                $('#rsvp-modal').modal('show');
+                $('#btn-form').attr('disabled','');
+            })
+            .fail(function (data) {
+                console.log(data);
+                $('#alert-wrapper').html(alert_markup('danger', '<strong>Mi dispiace!</strong> C\'è stato un errore con il server!'));
+            });
         }
     });
 
