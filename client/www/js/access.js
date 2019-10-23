@@ -2,24 +2,21 @@ $(document).ready(function () {
     $('#access-form').on('submit', function (e) {
         e.preventDefault();
 
-        if (MD5($('#access-key').val()) == '74e24607f99492039b6ab8eaece1f133') {
-            $.ajax({
-                url: "/mainpage",
-                type: "GET",
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader('token', $('#access-key').val());
-                },
-                success: function() {
-                    setTimeout(function() {
-                        window.location.href = '/mainpage';
-                    }, 0);
-                }
-            });
-        } else {
-            $('#alert-wrapper').html(alert_markup('danger', '<strong>Mi dispiace!</strong> La tua password non è corretta!'));
-        }
-
-        
+        $.ajax({
+            url: "/api/signin",
+            type: "GET",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('pwd', $('#access-key').val());
+            },
+            success: function () {
+                setTimeout(function () {
+                    window.location.href = '/mainpage';
+                }, 0);
+            },
+            error: function () {
+                $('#alert-wrapper').html(alert_markup('danger', '<strong>Mi dispiace!</strong> La tua password non è corretta!'));
+            }
+        });
     });
 });
 

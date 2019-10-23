@@ -1,0 +1,13 @@
+{
+	"dependencies": {
+		"express": "4.16.3",
+		"body-parser": "*",
+		"passport": "^0.4.0",
+		"passport-jwt": "^3.0.1",
+		"cookie-parser": "^1.4.3"
+	},
+	"scripts": {
+		"dev": "nodemon",
+		"start": "node index.js"
+	}
+}
