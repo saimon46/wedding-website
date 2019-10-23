@@ -4,18 +4,22 @@ services:
   - docker
 
 after_success:
-  - docker build -t saimon46/wedding-website .
+  - docker build -t saimon46/wedding-website-client ./client
+  - docker build -t saimon46/wedding-website-api ./api
+  - docker build -t saimon46/wedding-website-nginx ./nginx
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push saimon46/wedding-website
+  - docker push saimon46/wedding-website-client
+  - docker push saimon46/wedding-website-api
+  - docker push saimon46/wedding-website-nginx
 
 deploy:
   provider: elasticbeanstalk
   region: eu-west-3
   app: WeddingWebsite
-  env: Weddingwebsite-env
+  env: WeddingWebsiteMulti
   bucket_name: elasticbeanstalk-eu-west-3-114670523845
-  bucket_path: weddingwebsite
+  bucket_path: weddingwebsitemulti
   on:
     branch: master
   access_key_id:
