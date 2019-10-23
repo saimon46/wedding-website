@@ -22,7 +22,7 @@ app.get('/signin', function (req, res) {
 		var today = new Date();
 		today.setDate(today.getDate() + 10);
 
-		if (req.headers.pwd) {
+		if (req.headers.pwd && !req.cookies.pwd) {
 			res.cookie("pwd", MD5(req.headers.pwd), { expires: today });
 		}
 

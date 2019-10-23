@@ -11,7 +11,7 @@ $(document).ready(function () {
             success: function () {
                 setTimeout(function () {
                     window.location.href = '/mainpage';
-                }, 0);
+                }, 200);
             },
             error: function () {
                 $('#alert-wrapper').html(alert_markup('danger', '<strong>Mi dispiace!</strong> La tua password non è corretta!'));
