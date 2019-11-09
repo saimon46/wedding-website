@@ -15,6 +15,10 @@ after_success:
 
 deploy:
   provider: elasticbeanstalk
+  access_key_id:
+    secure: "${AMAZONAWS_ACCESS_KEY}"
+  secret_access_key:
+    secure: "${AMAZONAWS_SECRET_KEY}"
   region: eu-west-3
   app: WeddingWebsite
   env: WeddingWebsiteMulti
@@ -22,7 +26,3 @@ deploy:
   bucket_path: weddingwebsitemulti
   on:
     branch: master
-  access_key_id:
-    secure: $AMAZONAWS_ACCESS_KEY
-  secret_access_key:
-    secure: $AMAZONAWS_SECRET_KEY
