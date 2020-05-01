@@ -136,6 +136,10 @@ $(document).ready(function () {
 
     });
 
+    setTimeout(function(){ 
+        $('#an-modal').modal('show');
+    }, 1500);
+
     /********************** Embed youtube video *********************/
     $('.player').YTPlayer();
 
@@ -226,22 +230,17 @@ $(document).ready(function () {
         for(i=0; i<data_array.length; i++){
             data = data_array[i];
 
-            console.log(data);
-
             $.post('https://script.google.com/macros/s/AKfycbzf_1gk9J5InmggWsgodUJfw5KgdP3rZx-Nc2TYk8NAb1z9q8w/exec', data)
             .done(function (data) {
-                console.log(data);
                 $('#alert-wrapper').html('');
                 $('#rsvp-modal').modal('show');
                 $('#btn-form').attr('disabled','');
             })
             .fail(function (data) {
-                console.log(data);
                 $('#alert-wrapper').html(alert_markup('danger', '<strong>Mi dispiace!</strong> C\'è stato un errore con il server!'));
             });
         }
     });
-
 });
 
 var countDownDate = new Date("May 16, 2020 11:00:00").getTime();
