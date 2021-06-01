@@ -226,16 +226,28 @@ $(document).ready(function () {
         for(i=0; i<data_array.length; i++){
             data = data_array[i];
 
-            $.post('https://script.google.com/macros/s/AKfycbzf_1gk9J5InmggWsgodUJfw5KgdP3rZx-Nc2TYk8NAb1z9q8w/exec', data)
-            .done(function (data) {
-                $('#alert-wrapper').html('');
-                $('#rsvp-modal').modal('show');
-                $('#btn-form').attr('disabled','');
+            $.ajax({  
+                url: "https://script.google.com/macros/s/AKfycbwfMPQ-DN-frJ3Dch1e2otiWo0aQsg6vcmlHtoouGelmwu9-qKYPyK-lMaJsA6siBrk/exec",
+                dataType: 'jsonp',
+                headers: {
+                    'Accept': 'application/json',
+                    'Access-Control-Allow-Origin': 'http://localhost:3050',
+                    'Access-Control-Allow-Methods': 'POST',
+                    'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers',
+                    'Access-Control-Max-Age': '1000',
+                    'Content-Type': 'application/json'
+                },  
+                data: data,
+                async: false,
+                crossDomain: true
             })
-            .fail(function (data) {
-                $('#alert-wrapper').html(alert_markup('danger', '<strong>Mi dispiace!</strong> C\'è stato un errore con il server!'));
-            });
+            .always(function (data) {
+                
+            })
         }
+        $('#alert-wrapper').html('');
+        $('#rsvp-modal').modal('show');
+        $('#btn-form').attr('disabled','');
     });
 });
 
